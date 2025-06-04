@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nasıl Kullanılır</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/e8e1e0fe95.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style></style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="navbar-left">
+        <a href="index.html">
+          <img src="assets/akrep-logo.jpg" alt="Akrep App Logo" class="logo" />
+        </a>
+        <span class="brand">Akrep App</span>
+      </div>
+      <nav class="navbar-center">
+        <a href="index.html">Anasayfa</a>
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="nasilkullanilir.html" class="active">Nasıl Kullanılır</a>
+        <a href="#">Basında Akrep</a>
+        <a href="bizeulasin.html">Bize Ulaşın</a>
+      </nav>
+      <div class="navbar-right">
+        <a href="https://www.linkedin.com/company/akrepmobil/"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+        <a href="https://www.instagram.com/akrepapp_/"
+          ><i class="fab fa-instagram"></i
+        ></a>
+      </div>
+    </header>
+
+    <section class="steps-section">
+      <h2 class="steps-title">AKREP APP ile 6 Adımda Rahatça Gez!</h2>
+      <hr class="steps-divider" />
+
+      <div class="steps-navigation">
+        <button class="steps-arrow" id="prevBtn">&#8249;</button>
+        <div class="steps-wrapper">
+          <div class="steps-slider" id="stepsSlider">
+            <div class="step-box">
+              <h3 class="step-title">Adım 1</h3>
+              <img src="assets/adim1.png" alt="Adım 1" />
+              <p>Uygulamayı indir.</p>
+            </div>
+            <div class="step-box">
+              <h3 class="step-title">Adım 2</h3>
+              <img src="assets/adim2.png" alt="Adım 2" />
+              <p>
+                Harita veya arama özelliğini kullanarak en yakın emanet
+                noktasını bul.
+              </p>
+            </div>
+            <div class="step-box">
+              <h3 class="step-title">Adım 3</h3>
+              <img src="assets/adim3.png" alt="Adım 3" />
+              <p>Rezervasyonunu yap ve onay bekle.</p>
+            </div>
+            <div class="step-box">
+              <h3 class="step-title">Adım 4</h3>
+              <img src="assets/adim4.png" alt="Adım 4" />
+              <p>QR kodunu göstererek teslim et.</p>
+            </div>
+            <div class="step-box">
+              <h3 class="step-title">Adım 5</h3>
+              <img src="assets/adim5.png" alt="Adım 5" />
+              <p>Gönlünce gez, dolaş, keşfet!</p>
+            </div>
+            <div class="step-box">
+              <h3 class="step-title">Adım 6</h3>
+              <img src="assets/adim6.png" alt="Adım 6" />
+              <p>QR kod ile kolayca geri al.</p>
+            </div>
+          </div>
+        </div>
+        <button class="steps-arrow" id="nextBtn">&#8250;</button>
+      </div>
+
+      <hr class="steps-divider" />
+    </section>
+
+    <script>
+      let slider = document.getElementById("stepsSlider");
+      let position = 0;
+      const totalSteps = 6;
+      const visibleSteps = 3;
+      const stepWidth = 100 / visibleSteps;
+      const maxPosition = -stepWidth * (totalSteps - visibleSteps);
+
+      let scrollInterval;
+
+      function updateSlider() {
+        slider.style.transform = `translateX(${position}%)`;
+      }
+
+      function nextStep() {
+        if (position <= maxPosition) {
+          position = 0;
+        } else {
+          position -= stepWidth;
+        }
+        updateSlider();
+      }
+
+      function prevStep() {
+        if (position >= 0) {
+          position = maxPosition;
+        } else {
+          position += stepWidth;
+        }
+        updateSlider();
+      }
+
+      document.getElementById("nextBtn").addEventListener("mouseenter", () => {
+        scrollInterval = setInterval(nextStep, 1000);
+      });
+
+      document.getElementById("nextBtn").addEventListener("mouseleave", () => {
+        clearInterval(scrollInterval);
+      });
+
+      document.getElementById("prevBtn").addEventListener("mouseenter", () => {
+        scrollInterval = setInterval(prevStep, 1000);
+      });
+
+      document.getElementById("prevBtn").addEventListener("mouseleave", () => {
+        clearInterval(scrollInterval);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bize Ulaşın</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/e8e1e0fe95.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="navbar-left">
+        <a href="index.html">
+          <img src="assets/akrep-logo.jpg" alt="Akrep App Logo" class="logo" />
+        </a>
+        <span class="brand">Akrep App</span>
+      </div>
+
+      <nav class="navbar-center">
+        <a href="index.html">Anasayfa</a>
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="nasilkullanilir.html">Nasıl Kullanılır</a>
+        <a href="#">Basında Akrep</a>
+        <a href="bizeulasin.html" class="active">Bize Ulaşın</a>
+      </nav>
+
+      <div class="navbar-right">
+        <a href="https://www.linkedin.com/company/akrepmobil/"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+        <a href="https://www.instagram.com/akrepapp_/"
+          ><i class="fab fa-instagram"></i
+        ></a>
+      </div>
+    </header>
+    <section class="contact-section">
+      <div class="contact-content">
+        <div class="contact-box">
+          <div class="contact-intro">
+            <p>
+              <strong>Akrep App</strong> ekibi olarak her zaman yanınızdayız!<br />
+              Uygulama hakkında soru, görüş ya da iş birliği talepleriniz için
+              bizimle iletişime geçebilirsiniz.
+            </p>
+          </div>
+
+          <form class="contact-form">
+            <label for="name">Adınız</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="phone">Telefon Numarası</label>
+            <input type="tel" id="phone" name="phone" />
+
+            <label for="message">Mesajınız</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit" class="submit-button">Gönder</button>
+          </form>
+        </div>
+
+        <div class="contact-box image-box">
+          <img src="assets/adim1.png" alt="Akrep App Görseli" />
+        </div>
+      </div>
+    </section>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("mfhmujQuqdTh65zX2"); // Buraya dikkat
+
+    function sendMail(e) {
+      e.preventDefault();
+      const params = {
+        from_name: document.getElementById("name").value,
+        from_email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        message: document.getElementById("message").value,
+      };
+
+      emailjs
+        .send("service_5btkwc1", "template_rn0tdqb", params)
+        .then(function (res) {
+          alert("Mesaj gönderildi!", res.status);
+        })
+        .catch(function (err) {
+          console.error("Hata oluştu:", err);
+        });
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .querySelector(".contact-form")
+        .addEventListener("submit", sendMail);
+    });
+  </script>
+</html>
