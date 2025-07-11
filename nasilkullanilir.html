@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <style></style>
+    <link rel="icon" href="assets/akrep-logo.jpg" type="image/png" />
   </head>
   <body>
     <header class="navbar">
@@ -81,6 +81,7 @@
               <img src="assets/adim6.png" alt="Adım 6" />
               <p>QR kod ile kolayca geri al.</p>
             </div>
+            <div class="step-box dummy"></div>
           </div>
         </div>
         <button class="steps-arrow" id="nextBtn">&#8250;</button>
@@ -92,7 +93,7 @@
     <script>
       let slider = document.getElementById("stepsSlider");
       let position = 0;
-      const totalSteps = 6;
+      const totalSteps = 7;
       const visibleSteps = 3;
       const stepWidth = 100 / visibleSteps;
       const maxPosition = -stepWidth * (totalSteps - visibleSteps);
@@ -138,4 +139,9 @@
       });
     </script>
   </body>
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>© 2025 Akrep App. Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
 </html>

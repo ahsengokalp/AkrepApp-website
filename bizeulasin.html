@@ -13,12 +13,14 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="assets/akrep-logo.jpg" type="image/png" />
   </head>
+
   <body>
     <header class="navbar">
       <div class="navbar-left">
         <a href="index.html">
-          <img src="/assets/akrep-logo.jpg" alt="Akrep App Logo" class="logo" />
+          <img src="assets/akrep-logo.jpg" alt="Akrep App Logo" class="logo" />
         </a>
         <span class="brand">Akrep App</span>
       </div>
@@ -69,14 +71,15 @@
         </div>
 
         <div class="contact-box image-box">
-          <img src="assets/adim1.png" alt="Akrep App Görseli" />
+          <img src="assets/bizeulasın.png" alt="Akrep App Görseli" />
         </div>
       </div>
     </section>
   </body>
+  <script src="config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
-    emailjs.init("mfhmujQuqdTh65zX2"); // Buraya dikkat
+    emailjs.init(process.env.EMAILJS_PUBLIC_KEY);
 
     function sendMail(e) {
       e.preventDefault();
@@ -88,9 +91,14 @@
       };
 
       emailjs
-        .send("service_5btkwc1", "template_rn0tdqb", params)
+        .send(
+          process.env.EMAILJS_SERVICE_ID,
+          process.env.EMAILJS_TEMPLATE_ID,
+          params
+        )
         .then(function (res) {
           alert("Mesaj gönderildi!", res.status);
+          document.querySelector(".contact-form").reset();
         })
         .catch(function (err) {
           console.error("Hata oluştu:", err);
@@ -102,4 +110,9 @@
         .addEventListener("submit", sendMail);
     });
   </script>
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>© 2025 Akrep App. Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
 </html>
