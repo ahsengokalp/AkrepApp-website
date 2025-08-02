@@ -42,6 +42,7 @@
         ></a>
       </div>
     </header>
+
     <section class="contact-section">
       <div class="contact-content">
         <div class="contact-box">
@@ -75,44 +76,48 @@
         </div>
       </div>
     </section>
+
+    <!-- Mail Servisi için gerekli scriptler -->
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+      emailjs.init(window.EMAILJS_CONFIG.PUBLIC_KEY);
+
+      function sendMail(e) {
+        e.preventDefault();
+        const params = {
+          from_name: document.getElementById("name").value,
+          from_email: document.getElementById("email").value,
+          phone: document.getElementById("phone").value,
+          message: document.getElementById("message").value,
+        };
+
+        emailjs
+          .send(
+            window.EMAILJS_CONFIG.SERVICE_ID,
+            window.EMAILJS_CONFIG.TEMPLATE_ID,
+            params
+          )
+          .then(function (res) {
+            alert("Mesaj gönderildi!");
+            document.querySelector(".contact-form").reset();
+          })
+          .catch(function (err) {
+            console.error("Hata oluştu:", err);
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .querySelector(".contact-form")
+          .addEventListener("submit", sendMail);
+      });
+    </script>
+
+    <footer class="footer">
+      <div class="footer-bottom">
+        <p>© 2025 Akrep App. Tüm hakları saklıdır.</p>
+      </div>
+    </footer>
   </body>
-  <script src="config.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script>
-    emailjs.init(process.env.EMAILJS_PUBLIC_KEY);
-
-    function sendMail(e) {
-      e.preventDefault();
-      const params = {
-        from_name: document.getElementById("name").value,
-        from_email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        message: document.getElementById("message").value,
-      };
-
-      emailjs
-        .send(
-          process.env.EMAILJS_SERVICE_ID,
-          process.env.EMAILJS_TEMPLATE_ID,
-          params
-        )
-        .then(function (res) {
-          alert("Mesaj gönderildi!", res.status);
-          document.querySelector(".contact-form").reset();
-        })
-        .catch(function (err) {
-          console.error("Hata oluştu:", err);
-        });
-    }
-    document.addEventListener("DOMContentLoaded", function () {
-      document
-        .querySelector(".contact-form")
-        .addEventListener("submit", sendMail);
-    });
-  </script>
-  <footer class="footer">
-    <div class="footer-bottom">
-      <p>© 2025 Akrep App. Tüm hakları saklıdır.</p>
-    </div>
-  </footer>
 </html>
